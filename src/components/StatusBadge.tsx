@@ -34,48 +34,48 @@ export function StatusBadge({ status, language }: StatusBadgeProps) {
         className="inline-flex items-center"
       >
         {status === DocumentStatusType.Missing && (
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-red-700 whitespace-nowrap">
-            <AlertCircle className="w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true" />
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-300 whitespace-nowrap">
+            <AlertCircle className="w-3.5 h-3.5 text-rose-400 shrink-0" aria-hidden="true" />
             <span>{t.statusMissing}</span>
-            <span aria-hidden="true" className="text-slate-300">
+            <span aria-hidden="true" className="text-slate-500">
               ·
             </span>
-            <span className="text-[11px] font-normal text-red-600">{t.blockingTag}</span>
+            <span className="text-[11px] font-normal text-rose-400">{t.blockingTag}</span>
           </span>
         )}
 
         {status === DocumentStatusType.ExpiryDateNeeded && (
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 whitespace-nowrap">
-            <Clock className="w-3.5 h-3.5 text-amber-600 shrink-0" aria-hidden="true" />
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-300 whitespace-nowrap">
+            <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" aria-hidden="true" />
             <span>{t.statusExpiryNeeded}</span>
-            <span aria-hidden="true" className="text-slate-300">
+            <span aria-hidden="true" className="text-slate-500">
               ·
             </span>
-            <span className="text-[11px] font-normal text-amber-700">{t.blockingTag}</span>
+            <span className="text-[11px] font-normal text-amber-400">{t.blockingTag}</span>
           </span>
         )}
 
         {status === DocumentStatusType.Expired && (
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-red-700 whitespace-nowrap">
-            <AlertTriangle className="w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true" />
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-300 whitespace-nowrap">
+            <AlertTriangle className="w-3.5 h-3.5 text-rose-400 shrink-0" aria-hidden="true" />
             <span>{t.statusExpired}</span>
-            <span aria-hidden="true" className="text-slate-300">
+            <span aria-hidden="true" className="text-slate-500">
               ·
             </span>
-            <span className="text-[11px] font-normal text-red-600">{t.blockingTag}</span>
+            <span className="text-[11px] font-normal text-rose-400">{t.blockingTag}</span>
           </span>
         )}
 
         {status === DocumentStatusType.NotProvided && (
-          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500 whitespace-nowrap">
-            <MinusCircle className="w-3.5 h-3.5 text-slate-400 shrink-0" aria-hidden="true" />
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 whitespace-nowrap">
+            <MinusCircle className="w-3.5 h-3.5 text-slate-500 shrink-0" aria-hidden="true" />
             <span>{t.statusNotProvided}</span>
           </span>
         )}
 
         {status === DocumentStatusType.OK && (
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 whitespace-nowrap">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" aria-hidden="true" />
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-300 whitespace-nowrap">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" aria-hidden="true" />
             <span>{t.statusOk}</span>
           </span>
         )}

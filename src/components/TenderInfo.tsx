@@ -143,18 +143,18 @@ export function TenderInfo({
   return (
     <section
       aria-label={t.tenderInfoTitle}
-      className="bg-white border border-slate-200 rounded-xl p-6 space-y-6"
+      className="dynamic-surface border border-indigo-400/25 rounded-xl p-6 space-y-6"
     >
       {/* Top Row: JSON Upload Controls & Tender Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-slate-200">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-indigo-400/20">
         <div className="space-y-1">
-          <div className="flex items-center gap-2 text-xs text-slate-500">
-            <FileJson className="w-3.5 h-3.5 text-blue-600 shrink-0" aria-hidden="true" />
-            <span className="font-semibold text-slate-800">{t.uploadRequirementsTitle}</span>
+          <div className="flex items-center gap-2 text-xs text-slate-300">
+            <FileJson className="w-3.5 h-3.5 text-cyan-400 shrink-0" aria-hidden="true" />
+            <span className="font-semibold text-cyan-200">{t.uploadRequirementsTitle}</span>
             <span aria-hidden="true">·</span>
             <span>{t.uploadRequirementsDesc}</span>
           </div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">
+          <h1 className="text-xl font-bold text-slate-50 tracking-tight">
             {displayTitle}
           </h1>
         </div>
@@ -171,7 +171,7 @@ export function TenderInfo({
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-blue-400 hover:from-cyan-300 hover:to-blue-300 rounded-lg transition-colors whitespace-nowrap"
           >
             <Upload className="w-3.5 h-3.5" aria-hidden="true" />
             <span>{t.chooseJsonBtn}</span>
@@ -180,18 +180,18 @@ export function TenderInfo({
           <button
             type="button"
             onClick={() => onUploadJson(SAMPLE_REQUIREMENTS_JSON)}
-            className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-200 dynamic-subsurface border border-indigo-400/25 hover:border-cyan-400/50 rounded-lg transition-colors whitespace-nowrap"
           >
-            <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
+            <RotateCcw className="w-3.5 h-3.5 text-cyan-300" aria-hidden="true" />
             <span>{t.loadSampleJson}</span>
           </button>
 
           <button
             type="button"
             onClick={handleDownloadSampleJson}
-            className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 rounded-lg transition-colors whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-200 dynamic-subsurface border border-indigo-400/25 hover:border-cyan-400/50 rounded-lg transition-colors whitespace-nowrap"
           >
-            <Download className="w-3.5 h-3.5" aria-hidden="true" />
+            <Download className="w-3.5 h-3.5 text-cyan-300" aria-hidden="true" />
             <span>{t.downloadSampleJson}</span>
           </button>
 
@@ -200,8 +200,8 @@ export function TenderInfo({
             onClick={() => (isEditingMeta ? setIsEditingMeta(false) : startEditing())}
             className={`inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium rounded-lg border transition-colors whitespace-nowrap ${
               isEditingMeta
-                ? 'bg-slate-900 text-white border-slate-900'
-                : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
+                ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-semibold'
+                : 'dynamic-subsurface text-slate-200 border-indigo-400/25 hover:border-cyan-400/50'
             }`}
           >
             <Edit3 className="w-3.5 h-3.5" aria-hidden="true" />
@@ -213,8 +213,8 @@ export function TenderInfo({
             onClick={() => setShowJsonDrawer((prev) => !prev)}
             className={`inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium rounded-lg border transition-colors whitespace-nowrap ${
               showJsonDrawer
-                ? 'bg-slate-900 text-white border-slate-900'
-                : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
+                ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-semibold'
+                : 'dynamic-subsurface text-slate-200 border-indigo-400/25 hover:border-cyan-400/50'
             }`}
           >
             <Code2 className="w-3.5 h-3.5" aria-hidden="true" />
@@ -233,10 +233,10 @@ export function TenderInfo({
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
             onSubmit={saveEdits}
-            className="p-4 bg-slate-50 border border-slate-200 rounded-xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end"
+            className="p-4 dynamic-subsurface border border-indigo-400/25 rounded-xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end"
           >
             <div>
-              <label htmlFor="edit-tender-id" className="block text-xs font-medium text-slate-600 mb-1">
+              <label htmlFor="edit-tender-id" className="block text-xs font-medium text-slate-300 mb-1">
                 {t.tenderIdLabel}
               </label>
               <input
@@ -244,12 +244,12 @@ export function TenderInfo({
                 type="text"
                 value={draftId}
                 onChange={(e) => setDraftId(e.target.value)}
-                className="w-full px-2.5 py-1.5 text-xs font-mono bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="w-full px-2.5 py-1.5 text-xs font-mono text-slate-100 dynamic-control border border-indigo-400/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
               />
             </div>
 
             <div>
-              <label htmlFor="edit-procuring-entity" className="block text-xs font-medium text-slate-600 mb-1">
+              <label htmlFor="edit-procuring-entity" className="block text-xs font-medium text-slate-300 mb-1">
                 {t.procuringEntityLabel}
               </label>
               <input
@@ -257,12 +257,12 @@ export function TenderInfo({
                 type="text"
                 value={draftEntity}
                 onChange={(e) => setDraftEntity(e.target.value)}
-                className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="w-full px-2.5 py-1.5 text-xs text-slate-100 dynamic-control border border-indigo-400/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
               />
             </div>
 
             <div>
-              <label htmlFor="edit-bidder" className="block text-xs font-medium text-slate-600 mb-1">
+              <label htmlFor="edit-bidder" className="block text-xs font-medium text-slate-300 mb-1">
                 {t.bidderLabel}
               </label>
               <input
@@ -270,12 +270,12 @@ export function TenderInfo({
                 type="text"
                 value={draftBidder}
                 onChange={(e) => setDraftBidder(e.target.value)}
-                className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="w-full px-2.5 py-1.5 text-xs text-slate-100 dynamic-control border border-indigo-400/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
               />
             </div>
 
             <div>
-              <label htmlFor="edit-deadline" className="block text-xs font-medium text-slate-600 mb-1">
+              <label htmlFor="edit-deadline" className="block text-xs font-medium text-slate-300 mb-1">
                 {t.submissionDeadlineLabel}
               </label>
               <input
@@ -283,14 +283,14 @@ export function TenderInfo({
                 type="date"
                 value={draftDeadline}
                 onChange={(e) => setDraftDeadline(e.target.value)}
-                className="w-full px-2.5 py-1.5 text-xs font-mono tabular-nums bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="w-full px-2.5 py-1.5 text-xs font-mono tabular-nums text-slate-100 dynamic-control border border-indigo-400/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
               />
             </div>
 
             <div className="flex items-center gap-2">
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors"
+                className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded-lg transition-colors"
               >
                 <Check className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>{t.saveTenderMetaBtn}</span>
@@ -304,43 +304,43 @@ export function TenderInfo({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         <dl className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           <div className="space-y-1">
-            <dt className="text-xs text-slate-500">{t.tenderIdLabel}</dt>
-            <dd className="text-sm font-semibold font-mono tabular-nums text-slate-900">
+            <dt className="text-xs text-slate-400">{t.tenderIdLabel}</dt>
+            <dd className="text-sm font-semibold font-mono tabular-nums text-cyan-200">
               {requirements.tender_id}
             </dd>
           </div>
 
           <div className="space-y-1">
-            <dt className="text-xs text-slate-500">{t.procuringEntityLabel}</dt>
-            <dd className="text-sm font-medium text-slate-900">
+            <dt className="text-xs text-slate-400">{t.procuringEntityLabel}</dt>
+            <dd className="text-sm font-medium text-slate-100">
               {requirements.procuring_entity}
             </dd>
           </div>
 
           <div className="space-y-1">
-            <dt className="text-xs text-slate-500">{t.bidderLabel}</dt>
-            <dd className="text-sm font-medium text-slate-900">
+            <dt className="text-xs text-slate-400">{t.bidderLabel}</dt>
+            <dd className="text-sm font-medium text-slate-100">
               {requirements.bidder}
             </dd>
           </div>
 
           <div className="space-y-1">
-            <dt className="text-xs text-slate-500">{t.submissionDeadlineLabel}</dt>
-            <dd className="text-sm font-semibold font-mono tabular-nums text-blue-700">
+            <dt className="text-xs text-slate-400">{t.submissionDeadlineLabel}</dt>
+            <dd className="text-sm font-semibold font-mono tabular-nums text-emerald-300">
               {requirements.submission_deadline}
             </dd>
           </div>
         </dl>
 
         {/* Live Animated Readiness Bar */}
-        <div className="lg:col-span-4 lg:border-l lg:border-slate-200 lg:pl-6 space-y-2">
+        <div className="lg:col-span-4 lg:border-l lg:border-indigo-400/20 lg:pl-6 space-y-2">
           <div className="flex items-center justify-between text-xs">
-            <span className="font-semibold text-slate-700">{t.packageReadinessLabel}</span>
-            <span className="font-mono font-bold tabular-nums text-slate-900">
+            <span className="font-semibold text-slate-300">{t.packageReadinessLabel}</span>
+            <span className="font-mono font-bold tabular-nums text-cyan-200">
               {readinessPct}% · {mandatoryOkCount}/{mandatoryTotalCount} {t.mandatoryMatchedLabel} · {totalCompiledPages}p
             </span>
           </div>
-          <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+          <div className="h-2 w-full bg-slate-900/80 border border-indigo-400/20 rounded-full overflow-hidden">
             <motion.div
               initial={false}
               animate={{ scaleX: Math.max(0.02, readinessPct / 100) }}
@@ -348,10 +348,10 @@ export function TenderInfo({
               style={{ transformOrigin: 'left' }}
               className={`h-full w-full ${
                 readinessPct === 100
-                  ? 'bg-emerald-600'
+                  ? 'bg-gradient-to-r from-emerald-400 to-cyan-400'
                   : readinessPct >= 50
-                  ? 'bg-blue-600'
-                  : 'bg-amber-500'
+                  ? 'bg-gradient-to-r from-cyan-400 to-indigo-400'
+                  : 'bg-gradient-to-r from-amber-400 to-orange-400'
               }`}
             />
           </div>
@@ -367,15 +367,15 @@ export function TenderInfo({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
-            className="pt-4 border-t border-slate-200"
+            className="pt-4 border-t border-indigo-400/20"
           >
-            <div className="flex items-center justify-between mb-2 text-xs text-slate-500">
-              <span className="font-mono font-semibold text-slate-700">
+            <div className="flex items-center justify-between mb-2 text-xs text-slate-400">
+              <span className="font-mono font-semibold text-cyan-300">
                 requirements.json ({requirements.documents.length} required slots)
               </span>
               <span>Sorted ascending by order</span>
             </div>
-            <pre className="p-4 bg-slate-900 text-slate-100 rounded-xl font-mono text-xs overflow-x-auto max-h-60 leading-relaxed">
+            <pre className="p-4 bg-slate-950/90 border border-indigo-400/20 text-cyan-100 rounded-xl font-mono text-xs overflow-x-auto max-h-60 leading-relaxed">
               {JSON.stringify(requirements, null, 2)}
             </pre>
           </motion.div>

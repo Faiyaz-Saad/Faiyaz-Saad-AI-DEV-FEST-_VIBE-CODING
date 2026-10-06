@@ -5,13 +5,137 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes surfaceColorFlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes orbFloatA {
+  0%, 100% {
+    transform: translate3d(0px, 0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate3d(40px, -30px, 0px) scale(1.08);
+  }
+}
+
+@keyframes orbFloatB {
+  0%, 100% {
+    transform: translate3d(0px, 0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate3d(-45px, 35px, 0px) scale(1.1);
+  }
+}
+
 @layer base {
   body {
     font-family: var(--font-sans);
-    background-color: #f8fafc;
-    color: #0f172a;
+    background-color: #070b19;
+    color: #f8fafc;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.01em;
+  }
+}
+
+.dynamic-app-canvas {
+  background: linear-gradient(
+    -45deg,
+    #070b19,
+    #111c3d,
+    #0b293b,
+    #1f143d,
+    #0b2135,
+    #131836
+  );
+  background-size: 320% 320%;
+  animation: gradientShift 16s ease-in-out infinite;
+}
+
+.dynamic-surface {
+  background: linear-gradient(
+    135deg,
+    rgba(16, 26, 52, 0.88) 0%,
+    rgba(19, 39, 64, 0.86) 35%,
+    rgba(31, 24, 62, 0.88) 70%,
+    rgba(15, 33, 56, 0.88) 100%
+  );
+  background-size: 260% 260%;
+  animation: surfaceColorFlow 12s ease-in-out infinite;
+  backdrop-filter: blur(16px);
+}
+
+.dynamic-header-bar {
+  background: linear-gradient(
+    90deg,
+    rgba(11, 18, 38, 0.92) 0%,
+    rgba(19, 35, 62, 0.92) 50%,
+    rgba(25, 20, 52, 0.92) 100%
+  );
+  background-size: 240% 240%;
+  animation: gradientShift 14s ease-in-out infinite;
+  backdrop-filter: blur(16px);
+}
+
+.dynamic-subsurface {
+  background: linear-gradient(
+    120deg,
+    rgba(15, 23, 42, 0.72) 0%,
+    rgba(23, 37, 84, 0.55) 50%,
+    rgba(19, 42, 66, 0.68) 100%
+  );
+  background-size: 220% 220%;
+  animation: surfaceColorFlow 15s ease-in-out infinite;
+}
+
+.dynamic-control {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.85),
+    rgba(30, 41, 75, 0.85),
+    rgba(17, 34, 58, 0.85)
+  );
+  background-size: 200% 200%;
+  animation: surfaceColorFlow 10s ease-in-out infinite;
+}
+
+.orb-animate-a {
+  animation: orbFloatA 14s ease-in-out infinite;
+}
+
+.orb-animate-b {
+  animation: orbFloatB 18s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dynamic-app-canvas,
+  .dynamic-surface,
+  .dynamic-header-bar,
+  .dynamic-subsurface,
+  .dynamic-control,
+  .orb-animate-a,
+  .orb-animate-b {
+    animation: none !important;
   }
 }
 

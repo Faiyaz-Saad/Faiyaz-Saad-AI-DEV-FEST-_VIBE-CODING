@@ -21,12 +21,12 @@ export function Header({
   const t = UI_TEXT[language];
 
   return (
-    <header className="sticky top-0 z-30 flex items-center justify-between px-6 h-14 bg-white border-b border-slate-200">
+    <header className="sticky top-0 z-30 flex items-center justify-between px-6 h-14 dynamic-header-bar border-b border-indigo-400/20">
       {/* Zone 1: Single text element wordmark */}
       <a
         href="#top"
         onClick={(e) => e.preventDefault()}
-        className="text-base sm:text-lg font-bold tracking-tight text-slate-900 whitespace-nowrap"
+        className="text-base sm:text-lg font-bold tracking-tight bg-gradient-to-r from-cyan-200 via-indigo-200 to-emerald-200 bg-clip-text text-transparent whitespace-nowrap"
       >
         {t.appTitle}
       </a>
@@ -34,14 +34,14 @@ export function Header({
       {/* Zone 2: Quick Demo / Workflow Actions */}
       <nav
         aria-label="Quick testing utilities"
-        className="hidden md:flex items-center gap-5 text-xs font-medium text-slate-600"
+        className="hidden md:flex items-center gap-5 text-xs font-medium text-slate-300"
       >
         <button
           type="button"
           onClick={onLoadSamplePdfs}
-          className="inline-flex items-center gap-1.5 hover:text-blue-600 transition-colors whitespace-nowrap"
+          className="inline-flex items-center gap-1.5 hover:text-cyan-300 transition-colors whitespace-nowrap"
         >
-          <FileText className="w-3.5 h-3.5" aria-hidden="true" />
+          <FileText className="w-3.5 h-3.5 text-cyan-400" aria-hidden="true" />
           <span>{t.loadSamplePdfs}</span>
         </button>
 
@@ -49,9 +49,9 @@ export function Header({
           <button
             type="button"
             onClick={onAutoMatchDemo}
-            className="inline-flex items-center gap-1.5 text-blue-700 hover:text-blue-800 transition-colors whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 text-emerald-300 hover:text-emerald-200 transition-colors whitespace-nowrap"
           >
-            <FileCheck2 className="w-3.5 h-3.5" aria-hidden="true" />
+            <FileCheck2 className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" />
             <span>{t.autoMatchBtn}</span>
           </button>
         )}
@@ -62,16 +62,16 @@ export function Header({
         <div
           role="group"
           aria-label="Language switcher"
-          className="flex items-center gap-1 p-1 bg-slate-100 border border-slate-200 rounded-lg"
+          className="flex items-center gap-1 p-1 dynamic-subsurface border border-indigo-400/25 rounded-lg"
         >
-          <Globe className="w-3.5 h-3.5 text-slate-500 ml-1.5 mr-0.5" aria-hidden="true" />
+          <Globe className="w-3.5 h-3.5 text-cyan-300 ml-1.5 mr-0.5" aria-hidden="true" />
           <button
             type="button"
             onClick={() => onToggleLanguage('en')}
             className={`px-2.5 py-1 text-xs font-semibold rounded-md transition-colors whitespace-nowrap ${
               language === 'en'
-                ? 'bg-slate-900 text-white shadow-xs'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-xs'
+                : 'text-slate-300 hover:text-white'
             }`}
           >
             EN
@@ -81,8 +81,8 @@ export function Header({
             onClick={() => onToggleLanguage('bn')}
             className={`px-2.5 py-1 text-xs font-semibold rounded-md transition-colors whitespace-nowrap ${
               language === 'bn'
-                ? 'bg-slate-900 text-white shadow-xs'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-xs'
+                : 'text-slate-300 hover:text-white'
             }`}
           >
             বাংলা (BN)

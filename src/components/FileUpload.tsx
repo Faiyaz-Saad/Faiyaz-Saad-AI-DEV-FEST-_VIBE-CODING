@@ -86,22 +86,22 @@ export function FileUpload({
   return (
     <section
       aria-label={t.uploadPdfSectionTitle}
-      className="bg-white border border-slate-200 rounded-xl p-6 space-y-6"
+      className="dynamic-surface border border-indigo-400/25 rounded-xl p-6 space-y-6"
     >
       {/* Section Header & Quick Utilities */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-indigo-400/20">
         <div>
-          <h2 className="text-base font-bold text-slate-900">{t.uploadPdfSectionTitle}</h2>
-          <p className="text-xs text-slate-500 mt-0.5">{t.uploadPdfDropzoneHint}</p>
+          <h2 className="text-base font-bold text-slate-50">{t.uploadPdfSectionTitle}</h2>
+          <p className="text-xs text-slate-300 mt-0.5">{t.uploadPdfDropzoneHint}</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={onLoadSamplePdfs}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-100 dynamic-subsurface border border-indigo-400/25 hover:border-cyan-400/50 rounded-lg transition-colors whitespace-nowrap"
           >
-            <FileText className="w-3.5 h-3.5" aria-hidden="true" />
+            <FileText className="w-3.5 h-3.5 text-cyan-400" aria-hidden="true" />
             <span>{t.loadSamplePdfs}</span>
           </button>
 
@@ -110,18 +110,18 @@ export function FileUpload({
               <button
                 type="button"
                 onClick={onCreateDuplicateTestFile}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition-colors whitespace-nowrap"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-amber-200 bg-amber-950/60 hover:bg-amber-900/70 border border-amber-400/35 rounded-lg transition-colors whitespace-nowrap"
               >
-                <CopyPlus className="w-3.5 h-3.5" aria-hidden="true" />
+                <CopyPlus className="w-3.5 h-3.5 text-amber-400" aria-hidden="true" />
                 <span>{t.addDuplicateDemoBtn}</span>
               </button>
 
               <button
                 type="button"
                 onClick={onClearAllFiles}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-red-700 hover:bg-red-50 rounded-lg transition-colors whitespace-nowrap"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-rose-300 hover:bg-rose-950/60 border border-rose-400/25 rounded-lg transition-colors whitespace-nowrap"
               >
-                <Trash2 className="w-3.5 h-3.5" aria-hidden="true" />
+                <Trash2 className="w-3.5 h-3.5 text-rose-400" aria-hidden="true" />
                 <span>{t.clearAllFilesBtn}</span>
               </button>
             </>
@@ -131,41 +131,45 @@ export function FileUpload({
 
       {/* Capacity Meters: Max 30 Files & Max 50 MB (Compositor scaleX animation) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-lg space-y-2">
+        <div className="p-3.5 dynamic-subsurface border border-indigo-400/20 rounded-lg space-y-2">
           <div className="flex items-center justify-between text-xs">
-            <span className="font-medium text-slate-700">{t.filesCountLabel}</span>
-            <span className="font-mono font-semibold tabular-nums text-slate-900">
+            <span className="font-medium text-slate-300">{t.filesCountLabel}</span>
+            <span className="font-mono font-semibold tabular-nums text-cyan-200">
               {uploadedFiles.length} / {MAX_PDF_FILES} PDFs
             </span>
           </div>
-          <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+          <div className="h-1.5 w-full bg-slate-900/80 rounded-full overflow-hidden">
             <motion.div
               initial={false}
               animate={{ scaleX: Math.max(0.01, fileCountRatio) }}
               transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
               style={{ transformOrigin: 'left' }}
               className={`h-full w-full ${
-                uploadedFiles.length >= MAX_PDF_FILES ? 'bg-red-600' : 'bg-blue-600'
+                uploadedFiles.length >= MAX_PDF_FILES
+                  ? 'bg-rose-500'
+                  : 'bg-gradient-to-r from-cyan-400 to-blue-500'
               }`}
             />
           </div>
         </div>
 
-        <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-lg space-y-2">
+        <div className="p-3.5 dynamic-subsurface border border-indigo-400/20 rounded-lg space-y-2">
           <div className="flex items-center justify-between text-xs">
-            <span className="font-medium text-slate-700">{t.totalSizeLabel}</span>
-            <span className="font-mono font-semibold tabular-nums text-slate-900">
+            <span className="font-medium text-slate-300">{t.totalSizeLabel}</span>
+            <span className="font-mono font-semibold tabular-nums text-emerald-200">
               {totalSizeMb} MB / 50.00 MB
             </span>
           </div>
-          <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+          <div className="h-1.5 w-full bg-slate-900/80 rounded-full overflow-hidden">
             <motion.div
               initial={false}
               animate={{ scaleX: Math.max(0.01, sizeRatio) }}
               transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
               style={{ transformOrigin: 'left' }}
               className={`h-full w-full ${
-                totalSizeBytes >= MAX_TOTAL_BYTES ? 'bg-red-600' : 'bg-emerald-600'
+                totalSizeBytes >= MAX_TOTAL_BYTES
+                  ? 'bg-rose-500'
+                  : 'bg-gradient-to-r from-emerald-400 to-cyan-400'
               }`}
             />
           </div>
@@ -184,8 +188,8 @@ export function FileUpload({
         onDrop={handleDrop}
         className={`border-2 border-dashed rounded-xl p-6 text-center transition-colors ${
           isDragging
-            ? 'border-blue-600 bg-blue-50/50'
-            : 'border-slate-300 bg-slate-50/50 hover:border-slate-400'
+            ? 'border-cyan-400 bg-cyan-950/40'
+            : 'border-indigo-400/35 dynamic-subsurface hover:border-cyan-400/60'
         }`}
       >
         <input
@@ -203,15 +207,15 @@ export function FileUpload({
           className="sr-only"
         />
         <div className="flex flex-col items-center justify-center space-y-2">
-          <UploadCloud className="w-7 h-7 text-blue-600" aria-hidden="true" />
+          <UploadCloud className="w-7 h-7 text-cyan-400" aria-hidden="true" />
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="text-sm font-semibold text-blue-700 hover:underline focus:outline-none"
+            className="text-sm font-semibold text-cyan-300 hover:underline focus:outline-none"
           >
             {t.uploadPdfDropzoneTitle}
           </button>
-          <p className="text-xs text-slate-500">{t.uploadPdfDropzoneHint}</p>
+          <p className="text-xs text-slate-300">{t.uploadPdfDropzoneHint}</p>
         </div>
       </motion.div>
 
@@ -225,15 +229,15 @@ export function FileUpload({
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
             role="alert"
-            className="flex items-start gap-3 p-4 bg-amber-50 border border-amber-300 rounded-xl text-xs text-amber-950"
+            className="flex items-start gap-3 p-4 bg-amber-950/60 border border-amber-400/40 rounded-xl text-xs text-amber-100"
           >
             <AlertTriangle
-              className="w-4 h-4 text-amber-600 shrink-0 mt-0.5"
+              className="w-4 h-4 text-amber-400 shrink-0 mt-0.5"
               aria-hidden="true"
             />
             <div className="space-y-1">
               <div className="font-semibold">{t.duplicateDetectedBanner}</div>
-              <div className="font-mono text-[11px] text-amber-800">
+              <div className="font-mono text-[11px] text-amber-300">
                 Duplicate SHA-256:{' '}
                 {Array.from(duplicateHashes)
                   .map((h) => `${h.slice(0, 16)}...`)
@@ -246,14 +250,14 @@ export function FileUpload({
 
       {/* Uploaded Files Table */}
       {uploadedFiles.length === 0 ? (
-        <div className="py-8 text-center text-xs text-slate-500 border border-slate-200 rounded-lg bg-slate-50/40">
+        <div className="py-8 text-center text-xs text-slate-300 border border-indigo-400/20 rounded-lg dynamic-subsurface">
           {t.noFilesUploadedYet}
         </div>
       ) : (
-        <div className="overflow-x-auto border border-slate-200 rounded-lg">
+        <div className="overflow-x-auto border border-indigo-400/25 rounded-lg">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-slate-200 bg-slate-50/80 text-[11px] font-semibold text-slate-600">
+              <tr className="border-b border-indigo-400/20 dynamic-subsurface text-[11px] font-semibold text-cyan-200">
                 <th className="py-2.5 px-4">PDF File Name</th>
                 <th className="py-2.5 px-4 text-right">Pages</th>
                 <th className="py-2.5 px-4 text-right">Size</th>
@@ -262,7 +266,7 @@ export function FileUpload({
                 <th className="py-2.5 px-4 text-right">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-200 text-xs">
+            <tbody className="divide-y divide-indigo-400/15 text-xs">
               <AnimatePresence initial={false}>
                 {uploadedFiles.map((file) => {
                   const isDuplicate = duplicateHashes.has(file.sha256);
@@ -279,15 +283,15 @@ export function FileUpload({
                       transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
                       className={`transition-colors ${
                         isDuplicate
-                          ? 'bg-amber-50/60 hover:bg-amber-50'
-                          : 'hover:bg-slate-50/80'
+                          ? 'bg-amber-950/35 hover:bg-amber-900/40'
+                          : 'hover:bg-indigo-950/40'
                       }`}
                     >
-                      <td className="py-2.5 px-4 font-medium text-slate-900">
+                      <td className="py-2.5 px-4 font-medium text-slate-50">
                         <div className="flex items-center gap-2">
                           <FileText
                             className={`w-4 h-4 shrink-0 ${
-                              isDuplicate ? 'text-amber-600' : 'text-blue-600'
+                              isDuplicate ? 'text-amber-400' : 'text-cyan-400'
                             }`}
                             aria-hidden="true"
                           />
@@ -295,41 +299,41 @@ export function FileUpload({
                         </div>
                       </td>
 
-                      <td className="py-2.5 px-4 text-right font-mono tabular-nums text-slate-800 whitespace-nowrap">
+                      <td className="py-2.5 px-4 text-right font-mono tabular-nums text-slate-200 whitespace-nowrap">
                         {file.pageCount} {t.pagesUnit}
                       </td>
 
-                      <td className="py-2.5 px-4 text-right font-mono tabular-nums text-slate-500 whitespace-nowrap">
+                      <td className="py-2.5 px-4 text-right font-mono tabular-nums text-slate-400 whitespace-nowrap">
                         {sizeKb} KB
                       </td>
 
                       <td className="py-2.5 px-4 whitespace-nowrap">
                         <div className="flex items-center gap-2">
                           {isDuplicate ? (
-                            <span className="inline-flex items-center gap-1 font-semibold text-amber-800">
+                            <span className="inline-flex items-center gap-1 font-semibold text-amber-300">
                               <AlertTriangle
-                                className="w-3.5 h-3.5 text-amber-600 shrink-0"
+                                className="w-3.5 h-3.5 text-amber-400 shrink-0"
                                 aria-hidden="true"
                               />
                               <span>{t.duplicateFileTag}</span>
                             </span>
                           ) : (
-                            <span className="inline-flex items-center gap-1 text-emerald-700 font-medium">
+                            <span className="inline-flex items-center gap-1 text-emerald-300 font-medium">
                               <ShieldCheck
-                                className="w-3.5 h-3.5 text-emerald-600 shrink-0"
+                                className="w-3.5 h-3.5 text-emerald-400 shrink-0"
                                 aria-hidden="true"
                               />
                               <span>{t.uniqueFileTag}</span>
                             </span>
                           )}
-                          <span aria-hidden="true" className="text-slate-300">
+                          <span aria-hidden="true" className="text-slate-600">
                             ·
                           </span>
                           <button
                             type="button"
                             onClick={() => handleCopyHash(file.id, file.sha256)}
                             title="Copy full SHA-256 hash"
-                            className="inline-flex items-center gap-1 font-mono text-[11px] text-slate-500 hover:text-slate-900 tabular-nums"
+                            className="inline-flex items-center gap-1 font-mono text-[11px] text-slate-300 hover:text-cyan-300 tabular-nums"
                           >
                             <span>
                               {isCopied
@@ -337,9 +341,9 @@ export function FileUpload({
                                 : `${file.sha256.slice(0, 12)}…${file.sha256.slice(-6)}`}
                             </span>
                             {isCopied ? (
-                              <Check className="w-3 h-3 text-emerald-600" />
+                              <Check className="w-3 h-3 text-emerald-400" />
                             ) : (
-                              <Copy className="w-3 h-3 opacity-60" />
+                              <Copy className="w-3 h-3 opacity-70" />
                             )}
                           </button>
                         </div>
@@ -347,7 +351,7 @@ export function FileUpload({
 
                       <td className="py-2.5 px-4 whitespace-nowrap">
                         {matchedDoc ? (
-                          <span className="font-medium text-blue-700">
+                          <span className="font-medium text-cyan-300">
                             {t.assignedToLabel} #{matchedDoc.order}{' '}
                             {language === 'bn'
                               ? matchedDoc.title_bn
@@ -363,7 +367,7 @@ export function FileUpload({
                           type="button"
                           onClick={() => onRemoveFile(file.id)}
                           aria-label={`${t.removeFileAria} ${file.name}`}
-                          className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          className="p-1.5 text-slate-400 hover:text-rose-300 hover:bg-rose-950/60 rounded-lg transition-colors"
                         >
                           <Trash2 className="w-4 h-4" aria-hidden="true" />
                         </button>

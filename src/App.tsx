@@ -381,7 +381,17 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8fafc] text-slate-900">
+    <div className="min-h-screen flex flex-col dynamic-app-canvas text-slate-50 relative overflow-x-hidden">
+      {/* Ambient Animated Color Orbs (Compositor-only transform animations) */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      >
+        <div className="orb-animate-a absolute -top-28 -left-24 w-96 h-96 rounded-full bg-cyan-500/15 blur-3xl" />
+        <div className="orb-animate-b absolute top-1/3 -right-28 w-[28rem] h-[28rem] rounded-full bg-indigo-500/15 blur-3xl" />
+        <div className="orb-animate-a absolute -bottom-32 left-1/3 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl" />
+      </div>
+
       {/* 1. Header with Bilingual Switcher (EN / BN) */}
       <Header
         language={language}
@@ -392,7 +402,7 @@ export default function App() {
       />
 
       {/* Main Content Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6 pb-36">
+      <main className="relative z-10 flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6 pb-36">
         {/* Animated Error & Status Alerts */}
         <AnimatePresence initial={false}>
           {errorNotifications.length > 0 && (
@@ -403,9 +413,9 @@ export default function App() {
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
               role="alert"
-              className="bg-red-50 border border-red-300 rounded-xl p-4 flex items-start justify-between gap-4"
+              className="bg-rose-950/80 border border-rose-400/40 rounded-xl p-4 flex items-start justify-between gap-4 backdrop-blur-md"
             >
-              <div className="space-y-1 text-xs text-red-900">
+              <div className="space-y-1 text-xs text-rose-100">
                 {errorNotifications.map((err, i) => (
                   <div key={i} className="font-medium">
                     • {err}
@@ -416,7 +426,7 @@ export default function App() {
                 type="button"
                 onClick={() => setErrorNotifications([])}
                 aria-label="Dismiss error notifications"
-                className="p-1 text-red-600 hover:bg-red-100 rounded-lg"
+                className="p-1 text-rose-300 hover:bg-rose-900/60 rounded-lg"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -431,11 +441,11 @@ export default function App() {
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
               role="status"
-              className="bg-emerald-50 border border-emerald-300 rounded-xl px-4 py-3 flex items-center justify-between gap-4 text-xs text-emerald-950"
+              className="bg-emerald-950/80 border border-emerald-400/40 rounded-xl px-4 py-3 flex items-center justify-between gap-4 text-xs text-emerald-100 backdrop-blur-md"
             >
               <div className="flex items-center gap-2 font-medium">
                 <CheckCircle2
-                  className="w-4 h-4 text-emerald-600 shrink-0"
+                  className="w-4 h-4 text-emerald-400 shrink-0"
                   aria-hidden="true"
                 />
                 <span>{successMessage}</span>
@@ -444,7 +454,7 @@ export default function App() {
                 type="button"
                 onClick={() => setSuccessMessage(null)}
                 aria-label="Dismiss status message"
-                className="p-1 text-emerald-700 hover:bg-emerald-100 rounded-lg"
+                className="p-1 text-emerald-300 hover:bg-emerald-900/60 rounded-lg"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -494,7 +504,7 @@ export default function App() {
       </main>
 
       {/* 4. Bottom Action Bar: Animated Blocking Issues Banner + Generate Package Button */}
-      <footer className="sticky bottom-0 z-20 bg-white border-t border-slate-200 px-4 sm:px-6 py-4 shadow-sm">
+      <footer className="sticky bottom-0 z-20 dynamic-header-bar border-t border-indigo-400/25 px-4 sm:px-6 py-4">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <AnimatePresence mode="wait" initial={false}>
             {blockingItems.length > 0 ? (
@@ -504,23 +514,23 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -4 }}
                 transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
-                className="flex items-start gap-3 text-xs text-red-900"
+                className="flex items-start gap-3 text-xs text-rose-200"
               >
                 <AlertOctagon
-                  className="w-4 h-4 text-red-600 shrink-0 mt-0.5"
+                  className="w-4 h-4 text-rose-400 shrink-0 mt-0.5"
                   aria-hidden="true"
                 />
                 <div className="space-y-1">
-                  <div className="font-bold text-red-800">
+                  <div className="font-bold text-rose-300">
                     {t.blockingIssuesHeader} ({blockingItems.length})
                   </div>
-                  <ul className="space-y-0.5 text-red-700 max-h-20 overflow-y-auto">
+                  <ul className="space-y-0.5 text-rose-200/90 max-h-20 overflow-y-auto">
                     {blockingItems.map((item) => (
                       <li key={item.docId}>
                         <button
                           type="button"
                           onClick={() => scrollToDocRow(item.docId)}
-                          className="text-left hover:underline focus:outline-none"
+                          className="text-left hover:text-cyan-300 hover:underline focus:outline-none"
                         >
                           • {item.text}
                         </button>
@@ -536,19 +546,19 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -4 }}
                 transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
-                className="flex items-center gap-3 text-xs text-emerald-900"
+                className="flex items-center gap-3 text-xs text-emerald-200"
               >
                 <CheckCircle2
-                  className="w-5 h-5 text-emerald-600 shrink-0"
+                  className="w-5 h-5 text-emerald-400 shrink-0"
                   aria-hidden="true"
                 />
                 <div>
-                  <div className="font-bold text-emerald-800">
+                  <div className="font-bold text-emerald-300">
                     {t.allChecksPassedHeader}
                   </div>
-                  <div className="text-slate-600">
+                  <div className="text-slate-300">
                     {t.allChecksPassedSub} ({readinessMetrics.totalCompiledPages} total pages →{' '}
-                    <span className="font-mono font-semibold text-slate-900">
+                    <span className="font-mono font-semibold text-cyan-200">
                       {requirements.tender_id}_Package.pdf
                     </span>
                     )
@@ -568,8 +578,8 @@ export default function App() {
               onClick={handleGeneratePackage}
               className={`inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
                 blockingItems.length > 0 || isGenerating
-                  ? 'bg-slate-200 text-slate-500 cursor-not-allowed'
-                  : 'bg-blue-600 text-white hover:bg-blue-700 shadow-xs'
+                  ? 'bg-slate-800/80 text-slate-500 border border-slate-700 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400 text-slate-950 hover:from-cyan-300 hover:to-emerald-300 shadow-xs'
               }`}
             >
               <Download className="w-4 h-4" aria-hidden="true" />

@@ -127,13 +127,13 @@ export function DocumentTable({
   return (
     <section
       aria-label={t.requiredDocsTitle}
-      className="bg-white border border-slate-200 rounded-xl overflow-hidden"
+      className="dynamic-surface border border-indigo-400/25 rounded-xl overflow-hidden"
     >
       {/* Table Header & Dynamic Filter Bar */}
-      <div className="px-6 py-4 border-b border-slate-200 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div className="px-6 py-4 border-b border-indigo-400/20 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
-          <h2 className="text-base font-bold text-slate-900">{t.requiredDocsTitle}</h2>
-          <p className="text-xs text-slate-500 mt-0.5">{t.requiredDocsSubtitle}</p>
+          <h2 className="text-base font-bold text-slate-50">{t.requiredDocsTitle}</h2>
+          <p className="text-xs text-slate-300 mt-0.5">{t.requiredDocsSubtitle}</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2.5">
@@ -141,7 +141,7 @@ export function DocumentTable({
           <div
             role="group"
             aria-label="Filter required document slots"
-            className="flex items-center gap-1 p-1 bg-slate-100 border border-slate-200 rounded-lg"
+            className="flex items-center gap-1 p-1 dynamic-subsurface border border-indigo-400/25 rounded-lg"
           >
             {(
               [
@@ -157,8 +157,8 @@ export function DocumentTable({
                 onClick={() => setFilterMode(tab.id)}
                 className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
                   filterMode === tab.id
-                    ? 'bg-white text-slate-900 shadow-xs font-semibold'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-semibold shadow-xs'
+                    : 'text-slate-300 hover:text-white'
                 }`}
               >
                 {tab.label}
@@ -170,9 +170,9 @@ export function DocumentTable({
             <button
               type="button"
               onClick={onAutoMatchAll}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-emerald-200 bg-emerald-950/60 hover:bg-emerald-900/70 border border-emerald-400/30 rounded-lg transition-colors whitespace-nowrap"
             >
-              <CheckCheck className="w-3.5 h-3.5" aria-hidden="true" />
+              <CheckCheck className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" />
               <span>{t.autoMatchBtn}</span>
             </button>
           )}
@@ -183,7 +183,7 @@ export function DocumentTable({
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-slate-200 bg-slate-50/80 text-[11px] font-semibold text-slate-600">
+            <tr className="border-b border-indigo-400/20 dynamic-subsurface text-[11px] font-semibold text-cyan-200">
               <th className="py-3 px-4 w-16">{t.colOrder}</th>
               <th className="py-3 px-4 min-w-[220px]">{t.colDocName}</th>
               <th className="py-3 px-4 w-32">{t.colRequirement}</th>
@@ -193,7 +193,7 @@ export function DocumentTable({
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-slate-200 text-sm">
+          <tbody className="divide-y divide-indigo-400/15 text-sm">
             <AnimatePresence initial={false}>
               {filteredDocuments.map((doc) => {
                 const match = matches[doc.id];
@@ -214,35 +214,35 @@ export function DocumentTable({
                     transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
                     className={`transition-colors align-middle ${
                       computed?.status === DocumentStatusType.OK
-                        ? 'bg-emerald-50/20 hover:bg-emerald-50/40'
+                        ? 'bg-emerald-950/25 hover:bg-emerald-900/30'
                         : computed?.isBlocking
-                        ? 'hover:bg-slate-50/90'
-                        : 'hover:bg-slate-50/60'
+                        ? 'hover:bg-indigo-950/40'
+                        : 'hover:bg-slate-900/40'
                     }`}
                   >
                     {/* Order */}
-                    <td className="py-3.5 px-4 font-mono text-xs font-semibold text-slate-700 tabular-nums whitespace-nowrap">
+                    <td className="py-3.5 px-4 font-mono text-xs font-semibold text-cyan-300 tabular-nums whitespace-nowrap">
                       #{doc.order}
                     </td>
 
                     {/* Document Name */}
                     <td className="py-3.5 px-4">
-                      <div className="font-semibold text-slate-900 leading-snug">
+                      <div className="font-semibold text-slate-50 leading-snug">
                         {primaryTitle}
                       </div>
                       {secondaryTitle && secondaryTitle !== primaryTitle && (
-                        <div className="text-xs text-slate-500 mt-0.5">{secondaryTitle}</div>
+                        <div className="text-xs text-slate-400 mt-0.5">{secondaryTitle}</div>
                       )}
                     </td>
 
                     {/* Mandatory vs Optional (Zero-Pill Unboxed Text) */}
                     <td className="py-3.5 px-4 whitespace-nowrap text-xs">
                       {doc.mandatory ? (
-                        <span className="font-semibold text-slate-900">
+                        <span className="font-semibold text-cyan-200">
                           {t.mandatoryLabel}
                         </span>
                       ) : (
-                        <span className="text-slate-500">{t.optionalLabel}</span>
+                        <span className="text-slate-400">{t.optionalLabel}</span>
                       )}
                     </td>
 
@@ -258,9 +258,11 @@ export function DocumentTable({
                           onChange={(e) =>
                             onMatchFile(doc.id, e.target.value ? e.target.value : null)
                           }
-                          className="flex-1 min-w-[180px] px-2.5 py-1.5 text-xs font-medium text-slate-900 bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                          className="flex-1 min-w-[180px] px-2.5 py-1.5 text-xs font-medium text-slate-100 dynamic-control border border-indigo-400/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
                         >
-                          <option value="">{t.selectPdfPlaceholder}</option>
+                          <option value="" className="bg-slate-900 text-slate-200">
+                            {t.selectPdfPlaceholder}
+                          </option>
                           {uploadedFiles.map((file) => {
                             const assignedDocId = assignedFileIdToDocId.get(file.id);
                             const hashOwnerDocId = assignedHashToDocId.get(file.sha256);
@@ -275,6 +277,7 @@ export function DocumentTable({
                                 key={file.id}
                                 value={file.id}
                                 disabled={isAssignedElsewhere}
+                                className="bg-slate-900 text-slate-100"
                               >
                                 {file.name} ({file.pageCount}p)
                                 {isDuplicate ? ' [DUPLICATE SHA-256]' : ''}
@@ -290,7 +293,7 @@ export function DocumentTable({
                             onClick={() => onMatchFile(doc.id, null)}
                             title={t.unmatchAction}
                             aria-label={`${t.unmatchAction} ${matchedFile.name}`}
-                            className="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0"
+                            className="p-1.5 text-slate-400 hover:text-rose-300 hover:bg-rose-950/60 rounded-lg transition-colors shrink-0"
                           >
                             <Unlink className="w-3.5 h-3.5" aria-hidden="true" />
                           </button>
@@ -305,7 +308,7 @@ export function DocumentTable({
                           <div className="space-y-1.5">
                             <div className="relative flex items-center">
                               <Calendar
-                                className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 pointer-events-none"
+                                className="w-3.5 h-3.5 text-cyan-400 absolute left-2.5 pointer-events-none"
                                 aria-hidden="true"
                               />
                               <label htmlFor={`expiry-date-${doc.id}`} className="sr-only">
@@ -318,10 +321,10 @@ export function DocumentTable({
                                 onChange={(e) => onChangeExpiryDate(doc.id, e.target.value)}
                                 className={`w-full pl-8 pr-2.5 py-1.5 text-xs font-mono tabular-nums rounded-lg border focus:outline-none focus:ring-2 ${
                                   !match?.expiryDate
-                                    ? 'border-amber-400 bg-amber-50/40 text-slate-900 focus:ring-amber-500'
+                                    ? 'border-amber-400/70 bg-amber-950/50 text-amber-100 focus:ring-amber-400'
                                     : match.expiryDate < submissionDeadline
-                                    ? 'border-red-400 bg-red-50/40 text-red-900 focus:ring-red-600'
-                                    : 'border-slate-300 bg-white text-slate-900 focus:ring-blue-600'
+                                    ? 'border-rose-400/80 bg-rose-950/50 text-rose-100 focus:ring-rose-400'
+                                    : 'border-indigo-400/35 dynamic-control text-slate-100 focus:ring-cyan-400'
                                 }`}
                               />
                             </div>
@@ -333,11 +336,11 @@ export function DocumentTable({
                                 onClick={() =>
                                   onChangeExpiryDate(doc.id, submissionDeadline)
                                 }
-                                className="text-blue-700 hover:underline font-medium whitespace-nowrap"
+                                className="text-cyan-300 hover:underline font-medium whitespace-nowrap"
                               >
                                 {t.presetDeadline}
                               </button>
-                              <span aria-hidden="true" className="text-slate-300">
+                              <span aria-hidden="true" className="text-slate-600">
                                 ·
                               </span>
                               <button
@@ -348,11 +351,11 @@ export function DocumentTable({
                                     addYearsToIsoDate(submissionDeadline, 1)
                                   )
                                 }
-                                className="text-emerald-700 hover:underline font-medium whitespace-nowrap"
+                                className="text-emerald-300 hover:underline font-medium whitespace-nowrap"
                               >
                                 {t.presetNextYear}
                               </button>
-                              <span aria-hidden="true" className="text-slate-300">
+                              <span aria-hidden="true" className="text-slate-600">
                                 ·
                               </span>
                               <button
@@ -363,7 +366,7 @@ export function DocumentTable({
                                     addYearsToIsoDate(submissionDeadline, -1)
                                   )
                                 }
-                                className="text-red-600 hover:underline font-medium whitespace-nowrap"
+                                className="text-rose-300 hover:underline font-medium whitespace-nowrap"
                               >
                                 {t.presetExpiredTest}
                               </button>
@@ -396,13 +399,13 @@ export function DocumentTable({
       </div>
 
       {/* Live Merged PDF Page Sequence Preview Strip */}
-      <div className="px-6 py-4 bg-slate-50/70 border-t border-slate-200 space-y-2.5">
+      <div className="px-6 py-4 dynamic-subsurface border-t border-indigo-400/20 space-y-2.5">
         <div className="flex items-center justify-between text-xs">
-          <div className="flex items-center gap-1.5 font-semibold text-slate-800">
-            <Layers className="w-3.5 h-3.5 text-blue-600" aria-hidden="true" />
+          <div className="flex items-center gap-1.5 font-semibold text-cyan-200">
+            <Layers className="w-3.5 h-3.5 text-cyan-400" aria-hidden="true" />
             <span>{t.livePageMapTitle}</span>
           </div>
-          <span className="font-mono text-slate-600 tabular-nums">
+          <span className="font-mono text-slate-300 tabular-nums">
             Total Output: {pageSequenceSegments.totalPages}{' '}
             {pageSequenceSegments.totalPages === 1 ? 'page' : t.pagesUnit}
           </span>
@@ -419,11 +422,11 @@ export function DocumentTable({
                 transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
                 className={`px-3 py-1.5 rounded-lg border text-xs flex items-center gap-2 ${
                   seg.isCover
-                    ? 'bg-slate-900 text-white border-slate-900'
-                    : 'bg-white text-slate-800 border-slate-200'
+                    ? 'bg-gradient-to-r from-cyan-500/25 to-blue-500/25 text-cyan-100 border-cyan-400/40'
+                    : 'dynamic-control text-slate-100 border-indigo-400/30'
                 }`}
               >
-                <span className="font-mono font-semibold tabular-nums">
+                <span className="font-mono font-semibold text-cyan-300 tabular-nums">
                   {seg.pageRange}
                 </span>
                 <span aria-hidden="true" className="opacity-40">
