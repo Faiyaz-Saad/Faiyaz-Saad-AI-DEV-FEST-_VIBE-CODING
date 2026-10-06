@@ -1,0 +1,6 @@
+{
+  "name": "Kinetix Workspace",
+  "description": "Precision product engineering and sprint operations workspace with cycle tracking, capacity balancing, and automated release notes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
