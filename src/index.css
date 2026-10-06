@@ -29,28 +29,10 @@
   }
 }
 
-@keyframes orbFloatA {
-  0%, 100% {
-    transform: translate3d(0px, 0px, 0px) scale(1);
-  }
-  50% {
-    transform: translate3d(40px, -30px, 0px) scale(1.08);
-  }
-}
-
-@keyframes orbFloatB {
-  0%, 100% {
-    transform: translate3d(0px, 0px, 0px) scale(1);
-  }
-  50% {
-    transform: translate3d(-45px, 35px, 0px) scale(1.1);
-  }
-}
-
 @layer base {
   body {
     font-family: var(--font-sans);
-    background-color: #070b19;
+    background-color: #050b1a;
     color: #f8fafc;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -58,83 +40,63 @@
   }
 }
 
-.dynamic-app-canvas {
-  background: linear-gradient(
-    -45deg,
-    #070b19,
-    #111c3d,
-    #0b293b,
-    #1f143d,
-    #0b2135,
-    #131836
-  );
-  background-size: 320% 320%;
-  animation: gradientShift 16s ease-in-out infinite;
+.dynamic-bg-pan {
+  background-size: 280% 280%;
+  animation: gradientShift 10s ease-in-out infinite;
 }
 
 .dynamic-surface {
   background: linear-gradient(
     135deg,
-    rgba(16, 26, 52, 0.88) 0%,
-    rgba(19, 39, 64, 0.86) 35%,
-    rgba(31, 24, 62, 0.88) 70%,
-    rgba(15, 33, 56, 0.88) 100%
+    rgba(12, 22, 48, 0.72) 0%,
+    rgba(16, 34, 62, 0.68) 45%,
+    rgba(28, 20, 58, 0.72) 100%
   );
-  background-size: 260% 260%;
-  animation: surfaceColorFlow 12s ease-in-out infinite;
-  backdrop-filter: blur(16px);
+  background-size: 240% 240%;
+  animation: surfaceColorFlow 9s ease-in-out infinite;
+  backdrop-filter: blur(14px);
 }
 
 .dynamic-header-bar {
   background: linear-gradient(
     90deg,
-    rgba(11, 18, 38, 0.92) 0%,
-    rgba(19, 35, 62, 0.92) 50%,
-    rgba(25, 20, 52, 0.92) 100%
+    rgba(9, 16, 36, 0.84) 0%,
+    rgba(17, 32, 58, 0.84) 50%,
+    rgba(24, 18, 50, 0.84) 100%
   );
   background-size: 240% 240%;
-  animation: gradientShift 14s ease-in-out infinite;
+  animation: gradientShift 10s ease-in-out infinite;
   backdrop-filter: blur(16px);
 }
 
 .dynamic-subsurface {
   background: linear-gradient(
     120deg,
-    rgba(15, 23, 42, 0.72) 0%,
-    rgba(23, 37, 84, 0.55) 50%,
-    rgba(19, 42, 66, 0.68) 100%
+    rgba(13, 21, 42, 0.62) 0%,
+    rgba(22, 36, 80, 0.48) 50%,
+    rgba(16, 39, 62, 0.60) 100%
   );
   background-size: 220% 220%;
-  animation: surfaceColorFlow 15s ease-in-out infinite;
+  animation: surfaceColorFlow 11s ease-in-out infinite;
 }
 
 .dynamic-control {
   background: linear-gradient(
     135deg,
-    rgba(15, 23, 42, 0.85),
-    rgba(30, 41, 75, 0.85),
-    rgba(17, 34, 58, 0.85)
+    rgba(15, 23, 42, 0.82),
+    rgba(30, 41, 75, 0.82),
+    rgba(17, 34, 58, 0.82)
   );
   background-size: 200% 200%;
-  animation: surfaceColorFlow 10s ease-in-out infinite;
-}
-
-.orb-animate-a {
-  animation: orbFloatA 14s ease-in-out infinite;
-}
-
-.orb-animate-b {
-  animation: orbFloatB 18s ease-in-out infinite;
+  animation: surfaceColorFlow 8s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .dynamic-app-canvas,
+  .dynamic-bg-pan,
   .dynamic-surface,
   .dynamic-header-bar,
   .dynamic-subsurface,
-  .dynamic-control,
-  .orb-animate-a,
-  .orb-animate-b {
+  .dynamic-control {
     animation: none !important;
   }
 }

@@ -1,7 +1,8 @@
 import React from 'react';
-import { FileCheck2, FileText, Globe } from 'lucide-react';
+import { FileCheck2, FileText, Globe, Palette } from 'lucide-react';
 import { Language } from '../types';
 import { UI_TEXT } from '../i18n/translations';
+import { BgThemeId } from './AnimatedBackground';
 
 interface HeaderProps {
   language: Language;
@@ -9,7 +10,16 @@ interface HeaderProps {
   onLoadSamplePdfs: () => void;
   onAutoMatchDemo: () => void;
   hasUploadedFiles: boolean;
+  bgTheme: BgThemeId;
+  onCycleBgTheme: () => void;
 }
+
+const THEME_LABELS: Record<BgThemeId, string> = {
+  aurora: 'Aurora Wave',
+  nebula: 'Cosmic Nebula',
+  emerald: 'Emerald Matrix',
+  sunset: 'Sunset Pulse',
+};
 
 export function Header({
   language,
@@ -17,11 +27,13 @@ export function Header({
   onLoadSamplePdfs,
   onAutoMatchDemo,
   hasUploadedFiles,
+  bgTheme,
+  onCycleBgTheme,
 }: HeaderProps) {
   const t = UI_TEXT[language];
 
   return (
-    <header className="sticky top-0 z-30 flex items-center justify-between px-6 h-14 dynamic-header-bar border-b border-indigo-400/20">
+    <header className="sticky top-0 z-30 flex items-center justify-between px-6 h-14 dynamic-header-bar border-b border-indigo-400/25">
       {/* Zone 1: Single text element wordmark */}
       <a
         href="#top"
@@ -31,10 +43,10 @@ export function Header({
         {t.appTitle}
       </a>
 
-      {/* Zone 2: Quick Demo / Workflow Actions */}
+      {/* Zone 2: Quick Demo & Background Theme Switcher Links */}
       <nav
         aria-label="Quick testing utilities"
-        className="hidden md:flex items-center gap-5 text-xs font-medium text-slate-300"
+        className="hidden md:flex items-center gap-5 text-xs font-medium text-slate-200"
       >
         <button
           type="button"
@@ -55,6 +67,15 @@ export function Header({
             <span>{t.autoMatchBtn}</span>
           </button>
         )}
+
+        <button
+          type="button"
+          onClick={onCycleBgTheme}
+          className="inline-flex items-center gap-1.5 text-cyan-300 hover:text-cyan-200 transition-colors whitespace-nowrap"
+        >
+          <Palette className="w-3.5 h-3.5 text-cyan-400" aria-hidden="true" />
+          <span>Theme: {THEME_LABELS[bgTheme]}</span>
+        </button>
       </nav>
 
       {/* Zone 3: Bilingual Switcher Toggle (EN / BN) */}
@@ -70,7 +91,7 @@ export function Header({
             onClick={() => onToggleLanguage('en')}
             className={`px-2.5 py-1 text-xs font-semibold rounded-md transition-colors whitespace-nowrap ${
               language === 'en'
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-xs'
+                ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-xs'
                 : 'text-slate-300 hover:text-white'
             }`}
           >
@@ -81,7 +102,7 @@ export function Header({
             onClick={() => onToggleLanguage('bn')}
             className={`px-2.5 py-1 text-xs font-semibold rounded-md transition-colors whitespace-nowrap ${
               language === 'bn'
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-xs'
+                ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-xs'
                 : 'text-slate-300 hover:text-white'
             }`}
           >

@@ -29,9 +29,13 @@ import {
   MAX_PDF_FILES,
   MAX_TOTAL_BYTES,
 } from './components/FileUpload';
+import { AnimatedBackground, BgThemeId } from './components/AnimatedBackground';
+
+const BG_THEMES: BgThemeId[] = ['aurora', 'nebula', 'emerald', 'sunset'];
 
 export default function App() {
   const [language, setLanguage] = useState<Language>('en');
+  const [bgTheme, setBgTheme] = useState<BgThemeId>('aurora');
   const [requirements, setRequirements] = useState<TenderRequirements>(
     SAMPLE_REQUIREMENTS_JSON
   );
@@ -380,17 +384,17 @@ export default function App() {
     }
   };
 
+  const handleCycleBgTheme = () => {
+    setBgTheme((prev) => {
+      const idx = BG_THEMES.indexOf(prev);
+      return BG_THEMES[(idx + 1) % BG_THEMES.length];
+    });
+  };
+
   return (
-    <div className="min-h-screen flex flex-col dynamic-app-canvas text-slate-50 relative overflow-x-hidden">
-      {/* Ambient Animated Color Orbs (Compositor-only transform animations) */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
-      >
-        <div className="orb-animate-a absolute -top-28 -left-24 w-96 h-96 rounded-full bg-cyan-500/15 blur-3xl" />
-        <div className="orb-animate-b absolute top-1/3 -right-28 w-[28rem] h-[28rem] rounded-full bg-indigo-500/15 blur-3xl" />
-        <div className="orb-animate-a absolute -bottom-32 left-1/3 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl" />
-      </div>
+    <div className="min-h-screen flex flex-col text-slate-50 relative overflow-x-hidden">
+      {/* 60fps Animated Aurora Wave, Constellation & Glowing Orb Backdrop */}
+      <AnimatedBackground theme={bgTheme} />
 
       {/* 1. Header with Bilingual Switcher (EN / BN) */}
       <Header
@@ -399,6 +403,8 @@ export default function App() {
         onLoadSamplePdfs={handleLoadSamplePdfs}
         onAutoMatchDemo={handleAutoMatchAll}
         hasUploadedFiles={uploadedFiles.length > 0}
+        bgTheme={bgTheme}
+        onCycleBgTheme={handleCycleBgTheme}
       />
 
       {/* Main Content Container */}
